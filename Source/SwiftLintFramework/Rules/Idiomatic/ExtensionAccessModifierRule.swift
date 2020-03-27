@@ -52,6 +52,12 @@ public struct ExtensionAccessModifierRule: ASTRule, ConfigurationProviderRule, O
               open bar: Int { return 1 }
               open baz: Int { return 1 }
             }
+            """),
+            Example("""
+            extension Foo {
+                func bar() -> Int { return 1 }
+                public func baz() -> Int { return 1 }
+            }
             """)
         ],
         triggeringExamples: [
@@ -87,12 +93,12 @@ public struct ExtensionAccessModifierRule: ASTRule, ConfigurationProviderRule, O
         let declarations = dictionary.substructure
             .compactMap { entry -> (acl: AccessControlLevel, offset: ByteCount)? in
                 guard entry.declarationKind != nil,
-                    let acl = entry.accessibility,
                     let offset = entry.offset
                 else {
                     return nil
                 }
 
+                let acl = entry.accessibility ?? .internal
                 return (acl: acl, offset: offset)
             }
 
