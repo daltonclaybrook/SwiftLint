@@ -38,6 +38,11 @@
   properties in class extensions with computed properties using Swift 5.2.  
   [JP Simard](https://github.com/jpsim)
 
+* Fix false positives in `extension_access_modifier` rule when using implicit
+  internal access control modifiers.  
+  [Dalton Claybrook](https://github.com/daltonclaybrook)
+  [#3150](https://github.com/realm/SwiftLint/issues/3150)
+
 ## 0.39.1: The Laundromat has a Rotating Door
 
 #### Breaking
